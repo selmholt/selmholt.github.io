@@ -5,7 +5,7 @@ function Show-Menu {
      Clear-Host
      Write-Host " ================ $Title ================ "
     
-     Write-Host " 1: Press '1' for this option. "
+     Write-Host " 1: Get-WindowsAutoPilotInfo "
      Write-Host " 2: Press '2' for this option. "
      Write-Host " 3: Press '3' for this option. "
      Write-Host " Q: Press 'Q' to quit. "
@@ -14,6 +14,10 @@ function Show-Menu {
 Set-ExecutionPolicy Bypass -Scope Process
 
 $TempDir = $env:TEMP
+$CloudFilesDir = Join-Path -Path $TempDir -ChildPath 'CloudFiles'
+if (-not (Test-Path -Path $CloudFilesDir)) {
+     New-Item -ItemType Directory -Path $CloudFilesDir | Out-Null
+}
 
 do {
      Show-Menu
@@ -21,8 +25,8 @@ do {
      switch ($input) {
           '1' {
                Clear-Host
-               'You chose option #1'
-               Write-host "Temp Dir is: $TempDir"
+                  'You chose option #1'
+                  Install-Script -Name Get-WindowsAutoPilotInfo -Force -Scope CurrentUser -Destination $CloudFilesDir
           } '2' {
                Clear-Host
                'You chose option #2'
@@ -30,6 +34,7 @@ do {
                Clear-Host
                'You chose option #3'
           } 'q' {
+               Remove-Item -Path $CloudFilesDir -Recurse -Force
                return
           }
      }
