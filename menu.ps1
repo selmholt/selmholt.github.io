@@ -12,7 +12,8 @@ function Show-Menu {
 }
 
 Set-ExecutionPolicy Bypass -Scope Process
-$TempDir = [System.IO.Path]::GetTempPath()
+
+$TempDir = $env:TEMP
 
 do {
      Show-Menu
@@ -21,7 +22,7 @@ do {
           '1' {
                Clear-Host
                'You chose option #1'
-               Write-host "$TempDir"
+               Write-host "Temp Dir is: $TempDir"
           } '2' {
                Clear-Host
                'You chose option #2'
