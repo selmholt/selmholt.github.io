@@ -11,6 +11,7 @@ function Show-Menu {
      Write-Host “Q: Press 'Q' to quit.”
 }
 
+Set-ExecutionPolicy Bypass -Scope Process
 
 do {
      Show-Menu
@@ -19,6 +20,7 @@ do {
           '1' {
                Clear-Host
                'You chose option #1'
+               Write-host "$psscriptroot"
           } '2' {
                Clear-Host
                'You chose option #2'
