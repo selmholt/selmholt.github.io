@@ -29,7 +29,9 @@ do {
           '1' {
                Clear-Host
                   'You chose option #1'
+                  Write-host "Installing Get-WindowsAutoPilotInfo script"
                   Install-Script -Name Get-WindowsAutoPilotInfo -Force
+                  Start-Process Powershell
           } '2' {
                Clear-Host
                'You chose option #2'
