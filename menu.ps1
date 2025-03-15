@@ -29,7 +29,7 @@ do {
           '1' {
                Clear-Host
                   'You chose option #1'
-                  Install-Script -Name Get-WindowsAutoPilotInfo -Force -Scope CurrentUser -Path $CloudFilesDir
+                  Install-Script -Name Get-WindowsAutoPilotInfo -Force
           } '2' {
                Clear-Host
                'You chose option #2'
