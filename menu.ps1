@@ -12,7 +12,7 @@ function Show-Menu {
 }
 
 Set-ExecutionPolicy Bypass -Scope Process
-$WorkingDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$TempDir = [System.IO.Path]::GetTempPath()
 
 do {
      Show-Menu
@@ -21,7 +21,7 @@ do {
           '1' {
                Clear-Host
                'You chose option #1'
-               Write-host "$WorkingDir"
+               Write-host "$TempDir"
           } '2' {
                Clear-Host
                'You chose option #2'
