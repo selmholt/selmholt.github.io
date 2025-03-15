@@ -22,6 +22,22 @@ if (-not (Test-Path -Path $CloudFilesDir)) {
 $Root = Get-Location
 Set-Location -Path $CloudFilesDir
 
+function Get-IPGeolocation {
+  Param
+  (
+    [string]$IPAddress
+  )
+ 
+  $request = Invoke-RestMethod -Method Get -Uri "http://ip-api.com/json/$IPAddress"
+ 
+  [PSCustomObject]@{
+    IP      = $request.query
+    City    = $request.city
+    Country = $request.country
+    Isp     = $request.isp
+  }
+}
+
 do {
      Show-Menu
      $input = Read-Host "Please make a selection"
