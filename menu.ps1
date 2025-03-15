@@ -19,6 +19,9 @@ if (-not (Test-Path -Path $CloudFilesDir)) {
      New-Item -ItemType Directory -Path $CloudFilesDir | Out-Null
 }
 
+$Root = Get-Location
+Set-Location -Path $CloudFilesDir
+
 do {
      Show-Menu
      $input = Read-Host "Please make a selection"
@@ -26,7 +29,7 @@ do {
           '1' {
                Clear-Host
                   'You chose option #1'
-                  Install-Script -Name Get-WindowsAutoPilotInfo -Force -Scope CurrentUser -Destination $CloudFilesDir
+                  Install-Script -Name Get-WindowsAutoPilotInfo -Force -Scope CurrentUser -Path $CloudFilesDir
           } '2' {
                Clear-Host
                'You chose option #2'
@@ -34,6 +37,7 @@ do {
                Clear-Host
                'You chose option #3'
           } 'q' {
+               Set-Location -Path $Root
                Remove-Item -Path $CloudFilesDir -Recurse -Force
                return
           }
